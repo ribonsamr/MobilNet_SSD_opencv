@@ -38,7 +38,9 @@ net = cv2.dnn.readNetFromCaffe(args.prototxt, args.weights)
 while True:
     # Capture frame-by-frame
     ret, frame = cap.read()
-    frame_resized = cv2.resize(frame,(300,300)) # resize frame for prediction
+    frame_resized = None
+    if ret:
+        frame_resized = cv2.resize(frame,(300,300)) # resize frame for prediction
 
     # MobileNet requires fixed dimensions for input image(s)
     # so we have to ensure that it is resized to 300x300 pixels.
